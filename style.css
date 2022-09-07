@@ -125,34 +125,22 @@ svg {
   }
 }
 
-.container {
-  --max-width: 1110px;
-  --padding: 1rem;
-
-  /* container behaviour when window size is made larger or smaller */
-  width: min(var(--max-width), 100% - (var(--padding) * 2));
-  margin-inline: auto;
-}
-
-.even-columns {
-  display: grid;
-  gap: 1rem;
-}
-
-/* em is the only consistent unit across all browsers when zooming in and out */
-@media (min-width: 50em) {
-  .even-columns {
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-  }
-}
-
 /* general styling */
 
 body {
   font-size: var(--fs-body);
   font-family: var(--ff-body);
   color: var(--clr-primary-400);
+}
+
+/* doesn't overrite class rules */
+p:not([class]) {
+  opacity: 0.5;
+  max-width: 32ch;
+}
+
+p[data-width="wide"] {
+  max-width: 42ch;
 }
 
 /* button */
@@ -276,9 +264,78 @@ button {
   }
 }
 
+/* cta */
+
+/* !!!! figure out how to keep padding on outside left, right constant and the space between words and button grow when page size increases */
+
+.cta {
+  position: relative;
+  isolation: isolate;
+  text-align: center;
+}
+
+@media (min-width: 50em) {
+  .cta {
+    text-align: left;
+  }
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: url('/images/bg-tablet-pattern.svg'), url('/images/bg-tablet-pattern.svg');
+  background-size: 25rem;
+  background-position: 2rem -1rem, 58rem -17rem;
+  background-repeat: no-repeat;
+  opacity: .1;
+}
+
 /* Utility classes */
 /* Link utility classes to variables to work faster */
 /* Put at the bottom to make sure they're not overwritten by other rules - cascade order */
+
+.container {
+  --max-width: 1110px;
+  --padding: 1rem;
+
+  /* container behaviour when window size is made larger or smaller */
+  width: min(var(--max-width), 100% - (var(--padding) * 2));
+  margin-inline: auto;
+}
+
+.vertical-align-center {
+  align-items: center;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+@media (min-width: 50em) {
+  .justify-self-end-md {
+    justify-self: end;
+  }
+}
+
+/* applies to every child element except the first */
+.flow * + * {
+  margin-top: var(--flow-spacer, 3em);
+}
+
+.even-columns {
+  display: grid;
+  gap: 1rem;
+}
+
+/* em is the only consistent unit across all browsers when zooming in and out */
+@media (min-width: 50em) {
+  .even-columns {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
 
 .visually-hidden {
   position: absolute;

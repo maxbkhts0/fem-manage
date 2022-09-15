@@ -165,6 +165,10 @@ button {
   color: var(--clr-accent-400);
 }
 
+.button[data-shadow="none"] {
+  box-shadow: none;
+}
+
 .button:hover,
 .button:focus-visible {
   background-color: var(--clr-accent-300);
@@ -293,6 +297,20 @@ button {
 
 .primary-footer-form {
   grid-area: form;
+  display: grid;
+  align-content: space-between;
+}
+
+.primary-footer form {
+  display: flex;
+  gap: var(--size-200);
+}
+
+input:where([type="text"], [type="email"]) {
+  border-radius: 100vw;
+  border: 0;
+  padding: var(--size-100) var(--size-400);
+  /* font-size: var(--fs-300); */
 }
 
 @media (min-width: 50em) {
@@ -317,6 +335,7 @@ button {
 
 .footer-nav {
   columns: 2;
+  gap: clamp(var(--size-200), 30vw, var(--size-900));
 }
 
 .footer-nav a {
@@ -382,6 +401,12 @@ button {
   background-position: 2rem -1rem, 58rem -17rem;
   background-repeat: no-repeat;
   opacity: .1;
+}
+
+/* numbered items */
+
+.numbered-items {
+  counter-reset: count;
 }
 
 /* Utility classes */

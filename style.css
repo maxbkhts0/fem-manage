@@ -472,7 +472,16 @@ input:where([type="text"], [type="email"]) {
   height: 40px;
 }
 
+/* slider */
 
+.slider {
+  display: flex;
+}
+
+.slider > * {
+  width: 100%;
+  flex: 0 0 auto;
+}
 
 /* Utility classes */
 /* Link utility classes to variables to work faster */
